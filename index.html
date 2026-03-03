@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clarix IB — IB English Language & Literature</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff;
+      --off: #f7f9f8;
+      --blue: #4e9ab5;
+      --blue-light: #edf5f9;
+      --blue-mid: #a8cedd;
+      --ink: #181c18;
+      --mid: #637068;
+      --border: rgba(78,154,181,0.18);
+      --border-subtle: rgba(0,0,0,0.07);
+      --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 5rem;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem; font-weight: 400; letter-spacing: 0.04em;
+      color: var(--ink); text-decoration: none;
+    }
+    .logo span { color: var(--blue); font-style: italic; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.8rem; font-weight: 400;
+      color: var(--mid); letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--blue) !important; color: white !important;
+      padding: 0.5rem 1.3rem; border-radius: 100px; font-weight: 500 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: #3d8aa5 !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh; padding-top: 80px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding-left: 2rem; padding-right: 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; width: 800px; height: 560px;
+      background: radial-gradient(ellipse, rgba(78,154,181,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      padding: 0.38rem 1rem; border-radius: 100px; margin-bottom: 2.2rem;
+      border: 1px solid var(--blue-mid);
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .hero-pill::before { content: ''; width: 5px; height: 5px; background: var(--blue); border-radius: 50%; }
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      font-weight: 300; line-height: 1.06; letter-spacing: -0.025em;
+      color: var(--ink); margin-bottom: 1.6rem;
+      animation: fadeUp 0.6s ease 0.22s both;
+    }
+    .hero-title em { font-style: italic; color: var(--blue); }
+    .hero-sub {
+      font-size: 0.97rem; color: var(--mid); line-height: 1.85; font-weight: 300;
+      max-width: 440px; margin: 0 auto 2.6rem;
+      animation: fadeUp 0.6s ease 0.36s both;
+    }
+    .hero-btns {
+      display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.48s both;
+    }
+    .btn-primary {
+      background: var(--blue); color: white; text-decoration: none;
+      padding: 0.82rem 2.1rem; border-radius: 100px;
+      font-size: 0.83rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #3d8aa5; transform: translateY(-2px); }
+    .btn-secondary {
+      color: var(--ink); text-decoration: none;
+      padding: 0.82rem 2.1rem; border-radius: 100px;
+      font-size: 0.83rem; font-weight: 400;
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--blue-mid); transform: translateY(-2px); }
+
+    /* Hero tags */
+    .hero-tags {
+      display: flex; gap: 0.65rem; justify-content: center;
+      margin-top: 3.5rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.6s both;
+    }
+    .hero-tag {
+      background: white; border: 1px solid var(--border-subtle);
+      border-radius: 10px; padding: 0.65rem 1.1rem;
+      font-size: 0.78rem; color: var(--mid);
+      display: flex; align-items: center; gap: 0.45rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+    .hero-tag-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-size: 0.67rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1.1rem;
+    }
+    .section-label::before { content: ''; width: 20px; height: 1.5px; background: var(--blue); }
+    .section-heading {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.9rem, 3.2vw, 3rem);
+      font-weight: 300; line-height: 1.15; color: var(--ink);
+      letter-spacing: -0.015em;
+    }
+    .section-heading em { font-style: italic; color: var(--blue); }
+    .section-text { font-size: 0.88rem; color: var(--mid); line-height: 1.9; font-weight: 300; }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 9rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+      align-items: center; background: var(--off);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .about-text { margin-top: 1.4rem; }
+    .about-text + .about-text { margin-top: 0.9rem; }
+
+    /* Stats */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem; margin-top: 2.2rem;
+    }
+    .stat-card {
+      background: white; border: 1px solid var(--border-subtle);
+      border-radius: var(--radius); padding: 1.3rem 1.4rem;
+    }
+    .stat-card.accent {
+      background: var(--blue); border-color: var(--blue);
+      grid-column: span 3; padding: 1.4rem 1.8rem;
+    }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.85rem; font-weight: 300; color: var(--ink); line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-card.accent .stat-num { color: white; font-size: 1.1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; letter-spacing: 0.01em; }
+    .stat-label { font-size: 0.73rem; color: var(--mid); line-height: 1.5; }
+    .stat-card.accent .stat-label { color: rgba(255,255,255,0.72); font-size: 0.72rem; margin-top: 0.2rem; }
+
+    /* Features list */
+    .about-features {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border-subtle); border-radius: 18px;
+      overflow: hidden; background: white;
+    }
+    .about-feature {
+      padding: 1.6rem 1.8rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      transition: background 0.22s;
+    }
+    .about-feature:last-child { border-bottom: none; }
+    .about-feature:hover { background: var(--blue-light); }
+    .about-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blue-light); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .about-icon svg { width: 16px; height: 16px; }
+    .about-feature-title {
+      font-size: 0.8rem; font-weight: 500; color: var(--ink);
+      margin-bottom: 0.3rem; letter-spacing: 0.01em;
+    }
+    .about-feature-text { font-size: 0.8rem; color: var(--mid); line-height: 1.75; font-weight: 300; }
+
+    /* ── SERVICES ── */
+    #services {
+      padding: 9rem 5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .services-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 3rem;
+    }
+    .services-desc {
+      font-size: 0.85rem; color: var(--mid); max-width: 260px;
+      line-height: 1.8; text-align: right; font-weight: 300;
+      border-top: 1px solid var(--border-subtle); padding-top: 0.9rem;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .service-card {
+      background: var(--off); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius); padding: 2rem;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(78,154,181,0.09);
+      border-color: var(--blue-mid);
+    }
+    .service-icon {
+      width: 38px; height: 38px;
+      background: var(--blue-light); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); margin-bottom: 1.3rem;
+    }
+    .service-icon svg { width: 18px; height: 18px; }
+    .service-num { font-size: 0.65rem; color: var(--blue); font-weight: 500; letter-spacing: 0.14em; margin-bottom: 0.45rem; }
+    .service-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.12rem; font-weight: 400; color: var(--ink);
+      margin-bottom: 0.7rem; line-height: 1.25;
+    }
+    .service-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.8; font-weight: 300; }
+    .service-tag {
+      display: inline-block; margin-top: 1.1rem;
+      font-size: 0.63rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue);
+      background: var(--blue-light); padding: 0.22rem 0.65rem;
+      border-radius: 100px;
+    }
+
+    /* Included strip */
+    .included-strip {
+      margin-top: 1rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border-subtle); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .included-item {
+      padding: 1.6rem 1.8rem;
+      border-right: 1px solid var(--border-subtle);
+      display: flex; gap: 0.9rem; align-items: flex-start;
+      background: white;
+    }
+    .included-item:last-child { border-right: none; }
+    .included-dot { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; flex-shrink: 0; margin-top: 0.45rem; }
+    .included-title { font-size: 0.75rem; font-weight: 500; color: var(--ink); margin-bottom: 0.28rem; }
+    .included-text { font-size: 0.78rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 9rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7rem;
+      align-items: start; background: var(--off);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .contact-detail {
+      margin-top: 1.8rem; padding-top: 1.3rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .contact-label { font-size: 0.63rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.28rem; }
+    .contact-val { font-size: 0.88rem; color: var(--ink); font-weight: 300; }
+    .contact-cta-block {
+      margin-top: 2.5rem;
+      padding: 2rem; background: white; border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .contact-cta-heading {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 300; color: var(--ink);
+      line-height: 1.35;
+    }
+    .contact-cta-text { font-size: 0.82rem; color: var(--mid); line-height: 1.8; font-weight: 300; }
+    .contact-cta-email {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      background: var(--blue); color: white; text-decoration: none;
+      padding: 0.78rem 1.6rem; border-radius: 100px;
+      font-size: 0.82rem; font-weight: 500; width: fit-content;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .contact-cta-email:hover { background: #3d8aa5; transform: translateY(-1px); }
+    .contact-cta-email svg { width: 14px; height: 14px; }
+
+    /* Right column decorative info cards */
+    .contact-info-right {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .info-card {
+      background: white; border: 1px solid var(--border-subtle);
+      border-radius: var(--radius); padding: 1.6rem 1.8rem;
+    }
+    .info-card-label { font-size: 0.63rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+    .info-card-val { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 300; color: var(--ink); line-height: 1.4; }
+    .info-card-sub { font-size: 0.78rem; color: var(--mid); margin-top: 0.35rem; line-height: 1.6; font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-subtle); padding: 1.8rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: white;
+    }
+    .footer-logo { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 400; color: var(--ink); }
+    .footer-logo span { color: var(--blue); font-style: italic; }
+    .footer-copy { font-size: 0.7rem; color: var(--mid); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.1rem 1.4rem; }
+      .nav-links { display: none; }
+      #home { padding: 7rem 1.4rem 4rem; }
+      #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.4rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .stat-card.accent { grid-column: span 2; }
+      #services { padding: 5rem 1.4rem; }
+      .services-top { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+      .services-desc { text-align: left; }
+      .services-grid { grid-template-columns: 1fr; }
+      .included-strip { grid-template-columns: 1fr; }
+      .included-item { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .included-item:last-child { border-bottom: none; }
+      #contact { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 1.4rem; }
+      footer { flex-direction: column; gap: 0.8rem; padding: 1.8rem 1.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home" class="logo">Clarix<span>IB</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-pill">IB English Language &amp; Literature</div>
+      <h1 class="hero-title">Clarity of thought.<br/>Precision of expression.<br/><em>Confidence in every exam.</em></h1>
+      <p class="hero-sub">Expert IB English tutoring shaped around what top-band responses actually look like — and how to write them.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">View Services</a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </div>
+      <div class="hero-tags">
+        <div class="hero-tag"><div class="hero-tag-dot"></div>Paper 1 &amp; Paper 2</div>
+        <div class="hero-tag"><div class="hero-tag-dot"></div>Individual Oral</div>
+        <div class="hero-tag"><div class="hero-tag-dot"></div>HL Essay</div>
+        <div class="hero-tag"><div class="hero-tag-dot"></div>Online via Google Meet</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-heading">Tutoring built around<br/>your <em>success.</em></h2>
+      <p class="section-text about-text">Clarix IB was founded on a single belief: with the right guidance, every student can learn to think critically, write persuasively, and perform at their best.</p>
+      <p class="section-text" style="margin-top:0.9rem;">Every session is shaped around the individual — their texts, their strengths, and exactly where they need to grow.</p>
+      <div class="stats-row">
+        <div class="stat-card accent">
+          <div class="stat-num">1:1 &amp; Small Group Sessions</div>
+          <div class="stat-label">Private and small group tutoring available</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SL &amp; HL</div>
+          <div class="stat-label">Both levels covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Top Band</div>
+          <div class="stat-label">Every session aims for the highest marks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">IB English focused</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-features reveal">
+      <div class="about-feature">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/>
+          </svg>
+        </div>
+        <div>
+          <p class="about-feature-title">Examiner Intelligence</p>
+          <p class="about-feature-text">Understand what makes a response stand out — and build the consistent skills to write one every time.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="about-feature-title">Strategic Writing</p>
+          <p class="about-feature-text">From argument structure to timed writing, students develop a clear, reliable approach for any exam scenario.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div>
+          <p class="about-feature-title">Genuine Support</p>
+          <p class="about-feature-text">A space to ask questions, take risks, and grow — at your own pace, with a tutor who's fully invested in your progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-top reveal">
+      <div>
+        <p class="section-label">Services</p>
+        <h2 class="section-heading">Everything you need<br/>to <em>excel.</em></h2>
+      </div>
+      <p class="services-desc">Each service is tailored to where you are in the course and what you need most right now.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round">
+            <rect x="4" y="2" width="13" height="19" rx="2"/><line x1="8" y1="8" x2="14" y2="8"/><line x1="8" y1="12" x2="14" y2="12"/><line x1="8" y1="16" x2="11" y2="16"/>
+          </svg>
+        </div>
+        <p class="service-num">01</p>
+        <h3 class="service-title">Paper 1 Literary Analysis</h3>
+        <p class="service-desc">A structured, reliable approach for any unseen text — so you never walk into Paper 1 without a clear plan.</p>
+        <span class="service-tag">SL &amp; HL</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="3" width="9" height="18" rx="1"/><rect x="13" y="3" width="9" height="18" rx="1"/>
+          </svg>
+        </div>
+        <p class="service-num">02</p>
+        <h3 class="service-title">Paper 2 Comparative Essay</h3>
+        <p class="service-desc">Build a sharp, confident argument across two texts — structured, nuanced, and exactly what examiners want to read.</p>
+        <span class="service-tag">SL &amp; HL</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round">
+            <rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+        </div>
+        <p class="service-num">03</p>
+        <h3 class="service-title">Individual Oral Prep</h3>
+        <p class="service-desc">From global issue selection to polished delivery — preparation that makes the IO feel natural, not nerve-wracking.</p>
+        <span class="service-tag">SL &amp; HL</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </div>
+        <p class="service-num">04</p>
+        <h3 class="service-title">Higher Level Essay</h3>
+        <p class="service-desc">Develop an original, well-reasoned argument that reflects genuine literary insight — guided from first draft to final submission.</p>
+        <span class="service-tag">HL Only</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <p class="service-num">05</p>
+        <h3 class="service-title">Essay Feedback &amp; Marking</h3>
+        <p class="service-desc">Detailed, honest feedback on any written work — with clear, actionable guidance on what to strengthen and how.</p>
+        <span class="service-tag">All Levels</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4e9ab5" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/>
+          </svg>
+        </div>
+        <p class="service-num">06</p>
+        <h3 class="service-title">Intensive Exam Prep</h3>
+        <p class="service-desc">Targeted preparation in the final weeks before exams — past papers, timed practice, and focused revision where it counts most.</p>
+        <span class="service-tag">Exam Season</span>
+      </div>
+    </div>
+    <div class="included-strip reveal">
+      <div class="included-item">
+        <div class="included-dot"></div>
+        <div>
+          <p class="included-title">Personalised Sessions</p>
+          <p class="included-text">Shaped around each student individually — their texts, their goals, and where they need to grow.</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-dot"></div>
+        <div>
+          <p class="included-title">Written Feedback</p>
+          <p class="included-text">Detailed feedback on essays and assessments, with support available between sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-heading">Ready to get<br/><em>started?</em></h2>
+      <p class="section-text" style="margin-top:1.1rem;">Book a free consultation to find out how Clarix IB can support your progress in IB English.</p>
+      <div class="contact-detail">
+        <p class="contact-label">Email</p>
+        <p class="contact-val">studiq.ib@gmail.com</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-label">Format</p>
+        <p class="contact-val">Online via Google Meet</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-label">Availability</p>
+        <p class="contact-val">SL &amp; HL &mdash; Year 1 &amp; Year 2</p>
+      </div>
+    </div>
+    <div class="contact-info-right reveal">
+      <div class="contact-cta-block">
+        <h3 class="contact-cta-heading">Start with a free consultation.</h3>
+        <p class="contact-cta-text">No commitment needed. We'll discuss your goals, your texts, and how sessions can be structured around your needs.</p>
+        <a href="mailto:studiq.ib@gmail.com" class="contact-cta-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email us
+        </a>
+      </div>
+      <div class="info-card">
+        <p class="info-card-label">What to expect</p>
+        <p class="info-card-val">A tailored plan from session one.</p>
+        <p class="info-card-sub">Sessions are shaped around your specific texts, assessment timeline, and where you need the most support.</p>
+      </div>
+      <div class="info-card">
+        <p class="info-card-label">Levels</p>
+        <p class="info-card-val">Standard Level &amp; Higher Level</p>
+        <p class="info-card-sub">All components covered — Paper 1, Paper 2, Individual Oral, and HL Essay.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Clarix<span>IB</span></div>
+    <p class="footer-copy">&copy; 2026 Clarix IB &mdash; All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add("visible"), i * 75);
+        }
+      });
+    }, { threshold: 0.07 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
